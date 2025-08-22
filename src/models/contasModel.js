@@ -14,8 +14,13 @@ async function atualizarSaldo(id, valor) {
     await db.query('UPDATE contas SET saldo = saldo + ? WHERE id = ?', [valor, id]);
 }
 
+async function inserirConta(id, titular, saldo, ativa) {
+    await db.query('INSERT INTO contas (id, titular, saldo, ativa) VALUES (?, ?, ?, ?)', [id, titular, saldo, ativa]);
+}
+
 module.exports = { 
     getContas,
     getContaById, 
-    atualizarSaldo 
+    atualizarSaldo,
+    inserirConta
 };

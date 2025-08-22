@@ -14,7 +14,15 @@ async function getContaById(id) {
     return contas;
 }
 
+async function inserirConta(id, titular, saldo, ativa) {
+    if (saldo < 10) {
+       throw new createError(400, 'Saldo mínimo de R$ 10,00');
+    }
+    await contasModel.inserirConta(id, titular, saldo, ativa);
+}
+
 module.exports = {
     getContas,
-    getContaById
+    getContaById,
+    inserirConta
 };
